@@ -23,7 +23,7 @@ export default function Chat() {
     setName(name);
     setRoom(room);
 
-    socket = io("https://server-file-chat-app.onrender.com/", {
+    socket = io("http://localhost:5000/", {
       transports: ["websocket"],
     });
     socket.emit("Join", { name, room }, () => {});
@@ -32,7 +32,7 @@ export default function Chat() {
       socket.emit("disconnect");
       socket.off();
     };
-  }, [ENDPOINT, window.location.search]);
+  }, [ENDPOINT, ]);
 
   useEffect(() => {
     socket.on("meassage", (meassage) => {
